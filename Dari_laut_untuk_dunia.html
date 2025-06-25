@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta name="description" content="Situs edukasi interaktif tentang ekosistem laut dan konservasi lingkungan.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dari Laut Untuk Dunia</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Segoe UI', sans-serif; background: linear-gradient(to bottom, #ade8f4, #1c77ac, #102027); color: #102027; }
+    header { background: url('BERANDA.jpg') no-repeat center center; background-size: cover; color: #000000; text-align: center; padding: 200px 300px; position: relative; }
+    header::after { content: ""; position: absolute; bottom: 0; left: 0; height: 80px; width: 100%; background: url('https://i.ibb.co/1RxXT7D/wave2.png') repeat-x; animation: wave 8s linear infinite; }
+    @keyframes wave { from { background-position-x: 0; } to { background-position-x: 1000px; } }
+    nav { background-color: #ade8f4, #1c77ac; display: flex; justify-content: center; flex-wrap: wrap; padding: 12px 0; }
+    nav a { color: white; text-decoration: none; margin: 10px 20px; font-weight: bold; cursor: pointer; transition: color 0.3s; }
+    nav a:hover { color: #caf0f8; }
+    main { padding: 30px 20px; max-width: 960px; margin: auto; }
+    .page { display: none; animation: fadeIn 0.6s ease; }
+    .active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .btn { margin-top: 20px; padding: 10px 20px; background-color: #00b4d8; color: white; border: none; border-radius: 8px; font-size: 1em; cursor: pointer; transition: background 0.3s; }
+    .btn:hover { background-color: #0096c7; }
+    input, textarea { width: 100%; padding: 10px; margin-top: 8px; margin-bottom: 16px; border-radius: 6px; border: 1px solid #ccc; font-size: 1em; }
+    footer { background-color: #1c77ac, #102027; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+    @media (max-width: 600px) { nav a { margin: 8px 10px; font-size: 0.9em; } header h1 { font-size: 1.8em; } }
+  </style>
+  <style>
+  .ekosistem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .kartu-ekosistem {
+    background-color: #ade8f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s;
+    cursor: pointer;
+  }
+
+  .kartu-ekosistem:hover {
+    transform: scale(1.02);
+  }
+
+  .kartu-ekosistem img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+
+  .kartu-ekosistem .isi {
+    padding: 15px;
+  }
+
+  .kartu-ekosistem h4 {
+    margin: 0 0 10px;
+    font-size: 1.1em;
+  }
+
+  .kartu-ekosistem p {
+    font-size: 0.95em;
+    color: #003344;
+  }
+</style>
+<style>
+#tentang {
+  padding: 40px 30px;
+  max-width: 980px;
+  margin: auto;
+  background: #f0fbff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 119, 182, 0.1);
+  color: #003344;
+  font-size: 1.15em;
+  line-height: 1.8;
+  position: relative;
+  z-index: 1;
+}
+
+#tentang h2 {
+  color: #0077b6;
+  font-size: 2.2em;
+  margin-bottom: 18px;
+  padding-left: 15px;
+  border-left: 6px solid #00b4d8;
+  background: linear-gradient(to right, #e0f7fa, transparent);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 40px;
+}
+
+#tentang p {
+  margin-bottom: 20px;
+  text-align: justify;
+  text-indent: 30px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #tentang {
+    padding: 25px 20px;
+    font-size: 1em;
+  }
+
+  #tentang h2 {
+    font-size: 1.5em;
+    padding-left: 10px;
+  }
+}
+</style>
+<style>
+/* TERUMBU KARANG */
+#terumbu {
+  background: linear-gradient(to bottom, #caf0f8, #90e0ef, #48cae4);
+  padding: 40px 20px;
+  text-align: center;
+}
+.terumbu-header h2 {
+  font-size: 2.5em;
+  color: #00b4d8;
+  font-weight: bold;
+}
+.terumbu-header p,
+.terumbu-text {
+  color: #023e8a;
+}
+.terumbu-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+.terumbu-img-container {
+  max-width: 800px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+.terumbu-img {
+  width: 100%;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.terumbu-img:hover {
+  transform: scale(1.05);
+}
+.terumbu-text {
+  width: 80%;
+  max-width: 900px;
+  font-size: 1.1em;
+  text-align: left;
+  line-height: 1.6;
+}
+.terumbu-text h3 {
+  color: #0096c7;
+  font-size: 1.6em;
+}
+.terumbu-text ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+/* PADANG LAMUN */
+#lamun {
+  background: linear-gradient(to bottom, #e0f2f1, #a5d6a7, #81c784);
+  padding: 40px 20px;
+  text-align: center;
+}
+.lamun-header h2 {
+  font-size: 2.5em;
+  color: #388e3c;
+  font-weight: bold;
+}
+.lamun-header p,
+.lamun-text {
+  color: #33691e;
+}
+.lamun-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+.lamun-img-container {
+  max-width: 800px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+.lamun-img {
+  width: 100%;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.lamun-img:hover {
+  transform: scale(1.05);
+}
+.lamun-text {
+  width: 80%;
+  max-width: 900px;
+  font-size: 1.1em;
+  text-align: left;
+  line-height: 1.6;
+}
+.lamun-text h3 {
+  color: #2e7d32;
+  font-size: 1.6em;
+}
+.lamun-text ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+/* HUTAN BAKAU */
+#bakau {
+  background: linear-gradient(to bottom, #f1f8e9, #dcedc8, #aed581);
+  padding: 40px 20px;
+  text-align: center;
+}
+.bakau-header h2 {
+  font-size: 2.5em;
+  color: #7cb342;
+  font-weight: bold;
+}
+.bakau-header p,
+.bakau-text {
+  color: #558b2f;
+}
+.bakau-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+.bakau-img-container {
+  max-width: 800px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+.bakau-img {
+  width: 100%;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.bakau-img:hover {
+  transform: scale(1.05);
+}
+.bakau-text {
+  width: 80%;
+  max-width: 900px;
+  font-size: 1.1em;
+  text-align: left;
+  line-height: 1.6;
+}
+.bakau-text h3 {
+  color: #689f38;
+  font-size: 1.6em;
+}
+.bakau-text ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+/* LAUT DALAM */
+#lautdalam {
+  background: linear-gradient(to bottom, #e3f2fd, #bbdefb, #90caf9);
+  padding: 40px 20px;
+  text-align: center;
+}
+.lautdalam-header h2 {
+  font-size: 2.5em;
+  color: #1976d2;
+  font-weight: bold;
+}
+.lautdalam-header p,
+.lautdalam-text {
+  color: #0d47a1;
+}
+.lautdalam-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+.lautdalam-img-container {
+  max-width: 800px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+.lautdalam-img {
+  width: 100%;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.lautdalam-img:hover {
+  transform: scale(1.05);
+}
+.lautdalam-text {
+  width: 80%;
+  max-width: 900px;
+  font-size: 1.1em;
+  text-align: left;
+  line-height: 1.6;
+}
+.lautdalam-text h3 {
+  color: #1565c0;
+  font-size: 1.6em;
+}
+.lautdalam-text ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+/* ZONA PASANG SURUT */
+#pasangsurut {
+  background: linear-gradient(to bottom, #fffde7, #fff9c4, #ffe57f);
+  padding: 40px 20px;
+  text-align: center;
+}
+.pasangsurut-header h2 {
+  font-size: 2.5em;
+  color: #f9a825;
+  font-weight: bold;
+}
+.pasangsurut-header p,
+.pasangsurut-text {
+  color: #6d4c41;
+}
+.pasangsurut-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+.pasangsurut-img-container {
+  max-width: 800px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+.pasangsurut-img {
+  width: 100%;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.pasangsurut-img:hover {
+  transform: scale(1.05);
+}
+.pasangsurut-text {
+  width: 80%;
+  max-width: 900px;
+  font-size: 1.1em;
+  text-align: left;
+  line-height: 1.6;
+}
+.pasangsurut-text h3 {
+  color: #fbc02d;
+  font-size: 1.6em;
+}
+.pasangsurut-text ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+/* PANTAI PASIR */
+#pantaipasir {
+  background: linear-gradient(to bottom, #fff8e1, #ffe0b2, #ffcc80);
+  padding: 40px 20px;
+  text-align: center;
+}
+.pantaipasir-header h2 {
+  font-size: 2.5em;
+  color: #ff8f00;
+  font-weight: bold;
+}
+.pantaipasir-header p,
+.pantaipasir-text {
+  color: #6d4c41;
+}
+.pantaipasir-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+.pantaipasir-img-container {
+  max-width: 800px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+.pantaipasir-img {
+  width: 100%;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.pantaipasir-img:hover {
+  transform: scale(1.05);
+}
+.pantaipasir-text {
+  width: 80%;
+  max-width: 900px;
+  font-size: 1.1em;
+  text-align: left;
+  line-height: 1.6;
+}
+.pantaipasir-text h3 {
+  color: #ffb74d;
+  font-size: 1.6em;
+}
+.pantaipasir-text ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+  </style>
+  <style>
+    /* === Aksi Nyata === */
+#aksi {
+  background-color: #ade8f4, #1c77ac, #102027;
+  padding: 40px 20px;
+  border-radius: 10px;
+}
+
+#aksi h2 {
+  color: #ffffff;
+  font-size: 2em;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+#aksi p {
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 25px;
+}
+
+#aksi form {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #ffffffcc;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+#aksi label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 6px;
+  color: #0077b6;
+}
+
+#aksi input,
+#aksi textarea {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+}
+
+#aksi button.btn {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* === Kontak === */
+#kontak {
+  background-color: #ade8f4, #1c77ac, #102027;
+  padding: 40px 20px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+#kontak h2 {
+  color: #0077b6;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+#kontak p {
+  color: #ffffff;
+  font-size: 1.1em;
+  margin-bottom: 12px;
+}
+
+#kontak a {
+  color: #00b4d8;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#kontak a:hover {
+  text-decoration: underline;
+}
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Dari Laut Untuk Dunia</h1>
+    <p>Menjaga Laut, Menjaga Kehidupan</p>
+  </header>
+
+  <nav>
+    <a href="#" onclick="showPage('beranda')">Beranda</a>
+    <a href="#" onclick="showPage('tentang')">Tentang Laut</a>
+    <a href="#" onclick="showPage('aksi')">Aksi Nyata</a>
+    <a href="#" onclick="showPage('kontak')">Kontak</a>
+  </nav>
+
+  <main>
+    <div id="beranda" class="page active">
+        <h3>Jenis-Jenis Ekosistem Laut</h3>
+        <div class="ekosistem-grid">
+          <div class="kartu-ekosistem" onclick="showPage('terumbu')">
+            <img src="6460962ce3b70.jpeg" alt="Terumbu Karang">
+            <div class="isi">
+              <h4>Terumbu Karang</h4>
+              <p>Struktur bawah laut yang jadi rumah bagi jutaan spesies laut dan pelindung pantai.</p>
+            </div>
+          </div>
+          <div class="kartu-ekosistem" onclick="showPage('lamun')">
+            <img src="Foto-3.-Padang-lamun-di-pesisir-pantai.-Sumber-foto-The-Ocean-Agency-1200x800.png" alt="Padang Lamun">
+            <div class="isi">
+              <h4>Padang Lamun</h4>
+              <p>Tumbuhan laut berbunga yang menyerap karbon dan jadi habitat penting.</p>
+            </div>
+          </div>
+          <div class="kartu-ekosistem" onclick="showPage('bakau')">
+            <img src="vrf77jmrsdu253v.jpeg" alt="Hutan Bakau">
+            <div class="isi">
+              <h4>Hutan Bakau</h4>
+              <p>Ekosistem pantai tropis dengan akar khas yang menyaring limbah dan mencegah abrasi.</p>
+            </div>
+          </div>
+          <div class="kartu-ekosistem" onclick="showPage('lautdalam')">
+            <img src="Laut dalma.jpg" alt="Laut Dalam">
+            <div class="isi">
+              <h4>Laut Dalam</h4>
+              <p>Wilayah laut ekstrem dengan tekanan tinggi dan biota unik bercahaya.</p>
+            </div>
+          </div>
+          <div class="kartu-ekosistem" onclick="showPage('pasangsurut')">
+            <img src="Zona pasang surut.jpeg" alt="Zona Pasang Surut">
+            <div class="isi">
+              <h4>Zona Pasang Surut</h4>
+              <p>Daerah antara pasang dan surut yang penuh dinamika lingkungan.</p>
+            </div>
+          </div>
+          <div class="kartu-ekosistem" onclick="showPage('pantaipasir')">
+            <img src="pantai pasir.jpg">
+            <div class="isi">
+              <h4>Pantai Pasir</h4>
+              <p>Laut terbuka tempat hidupnya hiu, paus, dan ikan besar lainnya.</p>
+            </div>
+          </div>
+        </div>
+    </main>
+
+    <div id="tentang" class="page">
+      <h2>Tentang Laut</h2>
+      <p>
+Laut merupakan salah satu unsur paling vital dan menakjubkan di planet Bumi yang menutupi lebih dari 70% permukaan bumi. Laut bukan hanya sekadar hamparan air asin yang luas, tetapi juga merupakan ekosistem kompleks yang menjadi sumber kehidupan bagi jutaan spesies dan berperan penting dalam menjaga keseimbangan lingkungan global. Dari kedalaman yang misterius hingga permukaan yang berkilauan di bawah sinar matahari, laut menyimpan keajaiban yang terus menginspirasi manusia sepanjang sejarah.</p>
+
+<h2>Keanekaragaman Hayati Laut</h2>
+<p>
+Laut adalah rumah bagi berbagai bentuk kehidupan yang sangat beragam. Mulai dari plankton mikroskopis yang merupakan dasar rantai makanan laut, hingga paus biru raksasa yang merupakan makhluk terbesar di dunia. Ekosistem laut meliputi berbagai habitat seperti terumbu karang, padang lamun, hutan bakau, hingga laut dalam yang gelap dan dingin. Masing-masing habitat ini menyediakan kondisi unik yang mendukung spesies-spesies yang beradaptasi secara khusus.
+
+Terumbu karang, misalnya, dikenal sebagai "hutan hujan bawah laut" karena keragaman hayatinya yang luar biasa. Terumbu karang menjadi tempat berlindung dan tempat berkembang biak bagi ribuan jenis ikan, moluska, dan organisme lainnya. Selain itu, terumbu karang juga berperan sebagai pelindung garis pantai dari erosi dan gelombang badai.
+
+Padang lamun adalah ekosistem laut yang kurang dikenal, namun memiliki peran penting dalam menyimpan karbon dan menyediakan habitat bagi banyak spesies ikan dan invertebrata. Sedangkan hutan bakau, yang tumbuh di wilayah pesisir berlumpur, berfungsi sebagai tempat bertelur dan pembibitan bagi berbagai ikan dan udang. Hutan bakau juga berperan sebagai penyaring alami yang menjaga kualitas air laut.
+</p>
+
+<h2>Peran Laut dalam Sistem Iklim Global</h2>
+<p>
+Laut juga berperan besar dalam mengatur iklim Bumi. Laut menyerap sebagian besar panas yang dihasilkan oleh sinar matahari, menyimpan dan mendistribusikan panas ke seluruh dunia melalui arus laut seperti Arus Gulf Stream di Atlantik dan Arus Kuroshio di Pasifik. Proses ini membantu mengatur suhu global, mempengaruhi cuaca dan iklim di berbagai belahan dunia.
+
+Selain itu, laut menyerap sekitar 30% karbon dioksida yang dihasilkan aktivitas manusia, membantu mengurangi dampak perubahan iklim. Namun, proses penyerapan ini juga menyebabkan fenomena pengasaman laut, yang dapat merusak terumbu karang dan organisme laut lain yang memiliki cangkang kalsium karbonat.
+</p>
+
+<h2>Laut dan Kehidupan Manusia</h2>
+<p>
+Laut bukan hanya sumber kehidupan bagi organisme di dalamnya, tapi juga bagi manusia. Ribuan tahun lamanya, manusia bergantung pada laut sebagai sumber pangan utama. Ikan dan hasil laut lainnya menyediakan protein penting bagi miliaran orang di seluruh dunia. Selain itu, laut juga menjadi jalur perdagangan utama yang menghubungkan berbagai negara dan benua, memungkinkan pertukaran barang dan budaya.
+
+Wisata bahari juga berkembang pesat, dengan aktivitas seperti snorkeling, diving, dan pesiar yang memberikan pengalaman langsung keindahan bawah laut sekaligus meningkatkan kesadaran akan pentingnya pelestarian laut.
+
+Namun, ketergantungan manusia terhadap laut juga membawa tantangan besar. Eksploitasi berlebihan, polusi plastik, tumpahan minyak, dan perubahan iklim mengancam kesehatan ekosistem laut. Sampah plastik yang tidak terurai dapat membahayakan satwa laut yang salah mengira plastik sebagai makanan. Penangkapan ikan yang tidak berkelanjutan dapat mengurangi populasi ikan dan mengganggu rantai makanan.
+</p>
+
+<h2>Upaya Pelestarian Laut</h2>
+<p>
+Menyadari pentingnya laut bagi kehidupan, berbagai upaya pelestarian telah dilakukan di tingkat lokal hingga global. Kawasan konservasi laut, seperti taman laut dan kawasan perlindungan, dibuat untuk menjaga habitat alami dan populasi satwa laut tetap lestari. Penegakan hukum untuk mengurangi penangkapan ikan ilegal dan praktik merusak juga semakin diperketat.
+
+Selain itu, gerakan global seperti pengurangan penggunaan plastik sekali pakai dan kampanye bersih-bersih pantai turut mendukung pelestarian laut. Penelitian ilmiah terus dilakukan untuk memahami lebih dalam tentang ekosistem laut dan dampak aktivitas manusia, sehingga strategi pengelolaan yang efektif dapat diterapkan.
+
+Pendidikan dan kesadaran masyarakat juga menjadi kunci utama dalam menjaga laut. Dengan memahami pentingnya laut dan bagaimana cara menjaganya, setiap individu dapat berkontribusi, baik melalui perubahan gaya hidup maupun partisipasi aktif dalam kegiatan pelestarian.
+</p>
+
+<h2>Laut sebagai Inspirasi dan Misteri</h2>
+<p>
+Laut juga menjadi sumber inspirasi budaya dan spiritual di banyak masyarakat di seluruh dunia. Cerita rakyat, legenda, dan seni sering menggambarkan keindahan sekaligus kekuatan laut yang luar biasa. Para pelaut dan penjelajah di masa lalu berani menjelajah lautan untuk menemukan dunia baru, menjadikan laut simbol petualangan dan penemuan.
+
+Di sisi lain, laut masih menyimpan banyak misteri yang belum terungkap. Kedalaman laut yang belum dijelajahi lebih luas dari luas permukaan Bulan, menyimpan organisme dan fenomena alam yang belum dikenal. Teknologi modern seperti kapal selam dan drone bawah laut kini digunakan untuk meneliti dan mengeksplorasi kedalaman tersebut.
+</p>
+    </div>
+
+    <!-- Halaman Per Ekosistem -->
+    <!-- Halaman Per Ekosistem -->
+
+<div id="terumbu" class="page">
+  <div class="terumbu-container">
+    <h2>Terumbu Karang</h2>
+
+    <section class="terumbu-content">
+      <div class="terumbu-img-container">
+        <img src="Terumbu karang.jpeg" alt="Terumbu Karang" class="terumbu-img">
+      </div>
+      <div class="terumbu-text">
+        <p>Terumbu karang adalah struktur bawah laut yang terbentuk dari kalsium karbonat dan menjadi rumah bagi jutaan spesies laut. Terumbu karang sering disebut sebagai "hutan hujan tropis di bawah laut" karena keragamannya yang luar biasa dalam hal spesies yang hidup di sana. Mereka adalah pusat keanekaragaman hayati laut yang sangat penting.</p>
+        <h3>Fungsi Terumbu Karang:</h3>
+        <ul>
+          <li>Melindungi garis pantai dari erosi dan badai.</li>
+          <li>Menyediakan habitat bagi berbagai ikan dan organisme laut.</li>
+          <li>Mendukung industri pariwisata dan perikanan lokal.</li>
+          <li>Menyimpan karbon dan membantu mengatur iklim.</li>
+        </ul>
+        <h3>Ancaman Terumbu Karang:</h3>
+        <ul>
+          <li>Pemanasan global yang menyebabkan pemutihan karang.</li>
+          <li>Pencemaran laut dari limbah dan plastik.</li>
+          <li>Penangkapan ikan yang merusak dengan cara peledakan dan racun.</li>
+          <li>Pengembangan pesisir tanpa pengelolaan lingkungan.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div id="lamun" class="page">
+  <div class="lamun-container">
+    <div class="lamun-header">
+      <h2>Padang Lamun</h2>
+    </div>
+    <section class="lamun-content">
+      <div class="lamun-img-container">
+        <img src="Padang Lamun.png" alt="Padang Lamun" class="lamun-img">
+      </div>
+      <div class="lamun-text">
+        <p>Padang lamun adalah ekosistem laut berbasis tumbuhan berbunga yang berperan penting dalam menyerap karbon dan menyediakan habitat. Padang lamun berfungsi sebagai penyerap karbon alami yang membantu mengurangi dampak perubahan iklim. Mereka juga menjadi tempat bertelur dan tempat tinggal berbagai ikan dan invertebrata.</p>
+        <h3>Fungsi Padang Lamun:</h3>
+        <ul>
+          <li>Menyimpan karbon dalam jumlah besar.</li>
+          <li>Menstabilkan sedimen dan mencegah erosi.</li>
+          <li>Menyediakan habitat dan sumber makanan bagi biota laut.</li>
+          <li>Mendukung rantai makanan di ekosistem pesisir.</li>
+        </ul>
+        <h3>Ancaman Padang Lamun:</h3>
+        <ul>
+          <li>Pemanfaatan lahan pesisir yang tidak terkendali.</li>
+          <li>Pencemaran dan sedimentasi akibat aktivitas manusia.</li>
+          <li>Perubahan iklim yang menyebabkan naiknya permukaan laut.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div id="bakau" class="page">
+  <div class="bakau-container">
+    <div class="bakau-header">
+      <h2>Hutan Bakau</h2>
+    </div>
+    <section class="bakau-content">
+      <div class="bakau-img-container">
+        <img src="Hutan Bakau.jpeg" alt="Hutan Bakau" class="bakau-img">
+      </div>
+      <div class="bakau-text">
+        <p>Hutan bakau adalah ekosistem pantai tropis dengan akar khas yang membantu menyaring limbah dan mencegah abrasi. Hutan bakau menyediakan perlindungan pantai dari gelombang dan angin, serta merupakan tempat bertelur dan pembibitan bagi banyak ikan dan udang.</p>
+        <h3>Fungsi Hutan Bakau:</h3>
+        <ul>
+          <li>Mencegah erosi pantai dan abrasi.</li>
+          <li>Menjadi habitat bagi berbagai fauna laut dan burung.</li>
+          <li>Menyaring polutan dan menjaga kualitas air.</li>
+          <li>Mendukung keberlanjutan perikanan lokal.</li>
+        </ul>
+        <h3>Ancaman Hutan Bakau:</h3>
+        <ul>
+          <li>Konversi lahan bakau menjadi tambak dan pembangunan pesisir.</li>
+          <li>Pencemaran dan penebangan liar.</li>
+          <li>Perubahan iklim yang mengubah kondisi pesisir.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div id="lautdalam" class="page">
+  <div class="lautdalam-container">
+    <div class="lautdalam-header">
+      <h2>Laut Dalam</h2>
+    </div>
+    <section class="lautdalam-content">
+      <div class="lautdalam-img-container">
+        <img src="Laut dalam.jpg" alt="Laut Dalam" class="lautdalam-img">
+      </div>
+      <div class="lautdalam-text">
+        <p>Laut dalam adalah wilayah laut ekstrem dengan tekanan tinggi dan biota unik bercahaya. Laut dalam merupakan lingkungan dengan tekanan ekstrem dan suhu dingin, dihuni oleh makhluk yang beradaptasi khusus seperti organisme bioluminesen.</p>
+        <h3>Keunikan Laut Dalam:</h3>
+        <ul>
+          <li>Biota dengan kemampuan bercahaya sendiri (bioluminesensi).</li>
+          <li>Tekanan air yang sangat tinggi.</li>
+          <li>Ekosistem yang masih banyak misteri dan belum terjelajah.</li>
+        </ul>
+        <h3>Ancaman Laut Dalam:</h3>
+        <ul>
+          <li>Penambangan laut dalam yang mulai berkembang.</li>
+          <li>Pencemaran mikroplastik yang mencapai kedalaman.</li>
+          <li>Perubahan suhu dan kimia laut akibat aktivitas manusia.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div id="pasangsurut" class="page">
+  <div class="pasangsurut-container">
+    <div class="pasangsurut-header">
+      <h2>Zona Pasang Surut</h2>
+    </div>
+    <section class="pasangsurut-content">
+      <div class="pasangsurut-img-container">
+        <img src="Zona pasang surut.jpeg" alt="Zona Pasang Surut" class="pasangsurut-img">
+      </div>
+      <div class="pasangsurut-text">
+        <p>Zona pasang surut adalah daerah antara pasang dan surut yang penuh dinamika lingkungan. Zona pasang surut merupakan habitat bagi organisme yang mampu bertahan di kondisi berubah-ubah antara terendam dan terbuka udara.</p>
+        <h3>Karakteristik Zona Pasang Surut:</h3>
+        <ul>
+          <li>Fluktuasi kondisi lingkungan (suhu, salinitas, oksigen).</li>
+          <li>Habitat bagi berbagai moluska, krustasea, dan ganggang.</li>
+          <li>Penting untuk siklus nutrisi laut.</li>
+        </ul>
+        <h3>Ancaman Zona Pasang Surut:</h3>
+        <ul>
+          <li>Pencemaran dan limbah industri.</li>
+          <li>Pembangunan pesisir tanpa perencanaan.</li>
+          <li>Perubahan iklim dan kenaikan permukaan laut.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div id="pantaipasir" class="page">
+  <div class="pantaipasir-container">
+    <div class="pantaipasir-header">
+      <h2>Pantai Pasir</h2>
+    </div>
+    <section class="pantaipasir-content">
+      <div class="pantaipasir-img-container">
+        <img src="Pantai Pasir.jpg" alt="Pantai Pasir" class="pantaipasir-img">
+      </div>
+      <div class="pantaipasir-text">
+        <p>Pantai Pasir adalah zona pesisir yang ditandai dengan pasir halus berwarna terang, terbentuk dari pecahan karang, cangkang organisme laut, dan batu kapur. Wilayah ini menjadi habitat penting bagi berbagai spesies laut dan darat serta menjadi lokasi wisata populer.</p>
+        <h3>Fungsi Pantai Pasir:</h3>
+        <ul>
+          <li>Habitat peneluran penyu, kepiting, dan burung pantai.</li>
+          <li>Menyerap energi gelombang untuk melindungi daratan dari abrasi.</li>
+          <li>Menjadi tempat rekreasi, pariwisata, dan edukasi lingkungan.</li>
+          <li>Penyaring alami yang membantu menjaga kualitas air pesisir.</li>
+        </ul>
+        <h3>Ancaman Pantai Pasir:</h3>
+        <ul>
+          <li>Erosi pantai akibat pembangunan dan aktivitas manusia.</li>
+          <li>Sampah plastik dan limbah dari daratan.</li>
+          <li>Kerusakan habitat akibat pariwisata tak berkelanjutan.</li>
+          <li>Kenaikan permukaan laut dan perubahan iklim global.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</div>
+
+      <!-- Halaman Aksi -->
+<div id="aksi" class="page">
+  <h2>Gabung Aksi Nyata!</h2>
+  <p>Isi formulir di bawah ini untuk ikut serta dalam kegiatan konservasi laut bersama komunitas kami.</p>
+  <form id="aksiForm" action="submit_aksi.php" method="POST">
+    <label for="nama">Nama:</label>
+    <input type="text" name="nama" id="nama" required>
+
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" required>
+
+    <label for="pesan">Pesan atau Motivasi:</label>
+    <textarea name="pesan" id="pesan" rows="4" placeholder="Mengapa kamu ingin bergabung?"></textarea>
+
+    <button type="submit" class="btn">Gabung Sekarang</button>
+  </form>
+</div>
+
+<!-- Tempat menampilkan output Aksi -->
+<div id="output"></div>
+
+<!-- Halaman Kontak -->
+<div id="kontak" class="page">
+  <h2>Hubungi Kami</h2>
+  <p>Email: <a href="mailto:info@lautuntukdunia.org">info@lautuntukdunia.org</a></p>
+</div>
+
+  <footer>
+    &copy; 2025 LautUntukDunia.org | Dibuat untuk bumi 🌍
+  </footer>
+
+  <script>
+   // Pastikan showPage() bekerja
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById(id);
+  if (target) {
+    target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    console.warn("Halaman dengan ID '" + id + "' tidak ditemukan.");
+  }
+}
+
+// Validasi Form
+document.getElementById('aksiForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Mencegah reload halaman
+
+    var form = new FormData(this);
+
+    fetch('submit_aksi.php', {
+        method: 'POST',
+        body: form
+    })
+    .then(response => response.text())
+    .then(data => {
+        // Tampilkan hasil ke dalam div output
+        document.getElementById('output').innerHTML = data;
+    })
+    .catch(error => {
+        document.getElementById('output').innerHTML = 'Terjadi kesalahan saat mengirim data.';
+        console.error('Error:', error);
+    });
+});
+</script>
+
+</body>
+</html>
